@@ -1,0 +1,40 @@
+<form class="form-horizontal" autocomplete="off" #editStudentModal="ngForm" (ngSubmit)="save()">
+    <abp-modal-header [title]="'Update Score' | localize" (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
+    <div class="modal-body">
+        <tabset>
+            <tab [heading]="'Score Edit' | localize" class="pt-3 px-2">
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="name">
+                        {{ "Select Student" | localize }}
+                    </label>
+                    <div class="col-md-9">
+                        <select class="form-control" name="studentName" id="studentName" [(ngModel)]="ScoreInput.studentId">
+                            <option value="" disabled selected>Select Student</option>
+                            <option *ngFor="let item of StudentList" [value]="item.id">{{ item.name }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="name">
+                        {{ "Select Teacher" | localize }}
+                    </label>
+                    <div class="col-md-9">
+                        <select class="form-control" name="teacherName" id="teacherName" [(ngModel)]="ScoreInput.teacherId">
+                            <option value="" disabled selected>Select Teacher</option>
+                            <option *ngFor="let item of TeacherList" [value]="item.id">{{ item.name }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="name">
+                        {{ "Marks" | localize }}
+                    </label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" name="marks" id="marks" [(ngModel)]="ScoreInput.marks" />
+                    </div>
+                </div>
+            </tab>
+        </tabset>
+    </div>
+    <abp-modal-footer [cancelDisabled]="saving" (onCancelClick)="bsModalRef.hide()"></abp-modal-footer>
+</form>
